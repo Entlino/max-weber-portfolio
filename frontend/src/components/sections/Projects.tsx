@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { SectionWrapper } from '@/components/shared/SectionWrapper';
 import { useProjects } from '@/hooks/useProjects';
-import { useSkills } from '@/hooks/useSkills';
+import { cn } from '@/lib/utils';
 
 export function Projects() {
   const [activeTech, setActiveTech] = useState<string | undefined>(undefined);
@@ -68,17 +68,23 @@ export function Projects() {
                   ))}
                 </div>
                 <div className="flex gap-2">
-                  <Button size="sm" variant="outline" asChild>
-                    <a href={project.gitHubUrl} target="_blank" rel="noopener noreferrer">
-                      GitHub
-                    </a>
-                  </Button>
+                  <a
+                    href={project.gitHubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))}
+                  >
+                    GitHub
+                  </a>
                   {project.liveUrl && (
-                    <Button size="sm" asChild>
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        Live Demo
-                      </a>
-                    </Button>
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(buttonVariants({ size: 'sm' }))}
+                    >
+                      Live Demo
+                    </a>
                   )}
                 </div>
               </CardContent>

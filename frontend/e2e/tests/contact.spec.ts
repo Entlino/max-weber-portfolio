@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('contact form fields are visible', async ({ page }) => {
   await page.goto('/');
+  await page.waitForLoadState('networkidle');
   await page.locator('#contact').scrollIntoViewIfNeeded();
   await expect(page.locator('#name')).toBeVisible();
   await expect(page.locator('#email')).toBeVisible();

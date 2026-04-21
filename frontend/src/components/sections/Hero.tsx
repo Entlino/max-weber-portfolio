@@ -1,7 +1,8 @@
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
+import { buttonVariants } from '@/components/ui/button';
 import { useProfile } from '@/hooks/useProfile';
+import { cn } from '@/lib/utils';
 
 export function Hero() {
   const { data: profile, isLoading, isError } = useProfile();
@@ -34,19 +35,25 @@ export function Hero() {
                   <span>🚀 {profile.yearsOfExperience}+ years experience</span>
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  <Button asChild>
-                    <a href="#projects">View My Work</a>
-                  </Button>
-                  <Button variant="outline" asChild>
-                    <a href={profile.gitHubUrl} target="_blank" rel="noopener noreferrer">
-                      GitHub
-                    </a>
-                  </Button>
-                  <Button variant="outline" asChild>
-                    <a href={profile.linkedInUrl} target="_blank" rel="noopener noreferrer">
-                      LinkedIn
-                    </a>
-                  </Button>
+                  <a href="#projects" className={cn(buttonVariants())}>
+                    View My Work
+                  </a>
+                  <a
+                    href={profile.gitHubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(buttonVariants({ variant: 'outline' }))}
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    href={profile.linkedInUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(buttonVariants({ variant: 'outline' }))}
+                  >
+                    LinkedIn
+                  </a>
                 </div>
               </>
             ) : null}

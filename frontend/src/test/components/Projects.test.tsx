@@ -26,7 +26,7 @@ describe('Projects', () => {
   });
 
   it('shows empty state when no projects match', () => {
-    vi.mocked(useProjects).mockReturnValue({ data: [], isLoading: false, isError: false } as ReturnType<typeof useProjects>);
+    vi.mocked(useProjects).mockReturnValue({ data: [], isLoading: false, isError: false } as unknown as ReturnType<typeof useProjects>);
     render(<Projects />);
     expect(screen.getByText(/no projects found/i)).toBeInTheDocument();
   });
